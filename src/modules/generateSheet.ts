@@ -1,15 +1,19 @@
 import XLSX from 'xlsx-js-style'
+import { ItemsType } from './scraptItems/types';
 
-export const generateSheet = (arrayOfObject: any[] | undefined) => {
+export const generateSheet = (arrayOfArrays: ItemsType[]) => {
   
-  if (!arrayOfObject) return;
+  if (!arrayOfArrays) return;
 
-  const workSheet = XLSX.utils.aoa_to_sheet([arrayOfObject], {cellStyles: true})
+  const workSheet = XLSX.utils.aoa_to_sheet(arrayOfArrays, {cellStyles: true})
 
   const workBook = XLSX.utils.book_new()
 
   XLSX.utils.book_append_sheet(workBook, workSheet, 'Sheet 1')
 
-  XLSX.writeFile(workBook, 'testing.xlsx')
+  XLSX.writeFile(workBook, 'pc.xlsx')
   
+  console.log('====================================');
+  console.log('GENERATED');
+  console.log('====================================');
 }
