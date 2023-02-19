@@ -1,8 +1,8 @@
-import { generateSheet } from "./modules/generateSheet"
 import { removeAditionalInfo } from "./modules/removeAditionalInfo"
 import { scrapItems } from "./modules/scraptItems"
 import { ItemsType } from "./modules/scraptItems/types"
 import { sortCompareFunction } from "./modules/sortCompareFunction"
+import { uploadToGoogleSheet } from "./modules/uploadToGoogleSheet"
 import { pcItems } from "./store/pcItems"
 
 
@@ -19,9 +19,9 @@ export const bootstrap = async () => {
     console.log('Scrapped the price of', pcItems[pcItemIndex])
   }
 
-  const arraySheet = [['Name', 'Price', 'Link'], ...itemsInTheSheet, [{ f: '' }]]
+  const arraySheet = [['Name', 'Price', 'Link'], ...itemsInTheSheet]
 
   const updatedArray = removeAditionalInfo(arraySheet)
   
-  generateSheet(updatedArray)
+  uploadToGoogleSheet(updatedArray)
 }
