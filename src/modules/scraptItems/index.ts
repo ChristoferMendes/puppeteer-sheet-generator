@@ -42,16 +42,10 @@ export const scrapItems = async (name: string) => {
 
     if (!price || !linkForTheProduct) continue;
 
-    // await Promise.all([
-    //   page.goto(linkForTheProduct),
-    //   page.waitForSelector('h1')
-    // ])
+    
+    const linkWithHyperLink = [`=HYPERLINK("${linkForTheProduct}", "Link here")`]
 
-    // const productName = await page.$eval('h1', e => e.innerText)
-
-    const linkWithHyperLink = { f: `HYPERLINK("${linkForTheProduct}", "Link for the product")` }
-
-    items.push([name, price, linkWithHyperLink])
+    items.push([name, price, ...linkWithHyperLink])
   }
 
   page.close()
