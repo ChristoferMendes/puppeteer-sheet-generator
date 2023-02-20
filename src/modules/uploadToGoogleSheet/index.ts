@@ -29,4 +29,5 @@ export const uploadToGoogleSheet = async (fileData: (string | number | string[])
   
 
   console.log('SHEET UPDATED!')
+  process.exit()
 }
