@@ -10,13 +10,13 @@ import { pcItems } from "./store/pcItems"
 export const bootstrap = async () => {
   const itemsInTheSheet: ItemsType[] = []
 
-  for (const pcItemIndex in pcItems) {
-    const array = await scrapItems(pcItems[pcItemIndex])
+  for (const pcItem of pcItems) {
+    const array = await scrapItems(pcItem)
 
     const arraySorted = [...array].sort(sortCompareFunction);
 
     itemsInTheSheet.push(...arraySorted)
-    console.log('Scrapped the price of', pcItems[pcItemIndex])
+    console.log('Scrapped the price of', pcItem)
   }
 
   const arraySheet = [['Name', 'Price', 'Link'], ...itemsInTheSheet]
