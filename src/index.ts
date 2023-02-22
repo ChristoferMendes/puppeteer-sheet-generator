@@ -1,3 +1,4 @@
+import { logScrappedItem } from "./logger"
 import { removeAditionalInfo } from "./modules/removeAditionalInfo"
 import { scrapItems } from "./modules/scraptItems"
 import { ItemsType } from "./modules/scraptItems/types"
@@ -16,7 +17,7 @@ export const bootstrap = async () => {
     const arraySorted = [...array].sort(sortCompareFunction);
 
     itemsInTheSheet.push(...arraySorted)
-    console.log('Scrapped the price of', pcItem)
+    logScrappedItem(pcItem)
   }
 
   const arraySheet = [['Name', 'Price', 'Link'], ...itemsInTheSheet]
