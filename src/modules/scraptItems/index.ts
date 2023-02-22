@@ -1,6 +1,7 @@
 import puppeteer, { ElementHandle } from "puppeteer";
-import { handlePrices } from "../handlePrices";
-import { handleStoreLinks } from "../handleStoreLinks";
+import { logLoading } from "../../logger";
+import { getPrices } from "../getPrices";
+import { getStoreLinkXPaths } from "../getStoreLinkXPaths";
 import { ItemsType } from "./types";
 
 export const scrapItems = async (name: string) => {
@@ -10,12 +11,10 @@ export const scrapItems = async (name: string) => {
 
   const link = `https://www.google.com/search?q=${name.replace(/\s/g, '+')}`
 
-  console.log('====================================');
-  console.log('LOADING...');
-  console.log('====================================');
-
+  logLoading();
 
   const shoppingXPath = '/html/body/div[7]/div/div[4]/div/div[1]/div/div[1]/div/div[2]/a'
+  
 
   await Promise.all([
     page.goto(link),
@@ -27,9 +26,9 @@ export const scrapItems = async (name: string) => {
     page.waitForNavigation()
   ])
 
-  const storeLinkXPaths = handleStoreLinks()
+  const storeLinkXPaths = getStoreLinkXPaths()
 
-  const prices = await handlePrices(page)
+  const prices = await getPrices(page)
 
 
   const items: ItemsType[] = []
@@ -43,9 +42,9 @@ export const scrapItems = async (name: string) => {
     if (!price || !linkForTheProduct) continue;
 
     
-    const linkWithHyperLink = [`=HYPERLINK("${linkForTheProduct}", "Link here")`]
+    const linkWithHyperLink = `=HYPERLINK("${linkForTheProduct}", "Link here")`
 
-    items.push([name, price, ...linkWithHyperLink])
+    items.push([name, price, linkWithHyperLink])
   }
 
   page.close()
