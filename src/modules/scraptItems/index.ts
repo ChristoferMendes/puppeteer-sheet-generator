@@ -30,7 +30,6 @@ export const scrapItems = async (name: string) => {
 
   const prices = await getPrices(page)
 
-
   const items: ItemsType[] = []
 
   for (const storeLinkXPathIndex in storeLinkXPaths) {
