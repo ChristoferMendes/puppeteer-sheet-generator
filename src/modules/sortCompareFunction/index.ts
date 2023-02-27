@@ -6,7 +6,17 @@ export const sortCompareFunction = (a: ItemsType, b: ItemsType) => {
   
   if (typeof priceA !== 'string' || typeof priceB !== "string") return 1
 
-  const priceASerialized = parseFloat(priceA.replace(/[^0-9,-]+/g, "").replace(",", "."));
-  const priceBSerialized = parseFloat(priceB.replace(/[^0-9,-]+/g, "").replace(",", "."));
+
+  const removeNonNumbers = (string: string) => {
+    const nonDigitPattern = /[^0-9,-]+/g
+    const numbersOnly = string.replace(nonDigitPattern, '')
+
+    const priceSerialized = numbersOnly.replace(',', '.')
+
+    return +priceSerialized
+  }
+
+  const priceASerialized = removeNonNumbers(priceA)
+  const priceBSerialized = removeNonNumbers(priceB)
   return priceASerialized - priceBSerialized;
 }
