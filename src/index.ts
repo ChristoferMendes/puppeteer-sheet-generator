@@ -12,7 +12,7 @@ export const bootstrap = async () => {
   const itemsInTheSheet: ItemsType[] = []
 
   for (const pcItem of pcItems) {
-    const itemStrict  = `"` + pcItem + '"'
+    const itemStrict  = `"` + pcItem + `"`
     const array = await scrapItems(itemStrict)
 
     const arraySorted = [...array].sort(sortCompareFunction);
