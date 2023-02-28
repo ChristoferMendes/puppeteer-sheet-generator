@@ -8,6 +8,7 @@
     "dev": "tsx index"
   },
   "dependencies": {
+    "dotenv": "^16.0.3",
     "googleapis": "^111.0.0",
     "puppeteer": "^19.6.3"
   },
