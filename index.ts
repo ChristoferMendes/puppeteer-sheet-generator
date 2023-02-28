@@ -2,7 +2,6 @@
 // import puppeteer from 'puppeteer'
 
 import { bootstrap } from "./src";
-import XLSX from 'xlsx-js-style'
 
 
 // (() => {
