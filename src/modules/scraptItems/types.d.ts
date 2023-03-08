@@ -1,1 +1,1 @@
-export type ItemsType = (string | string[])[]
+export type ItemsType = (string | string)[]
