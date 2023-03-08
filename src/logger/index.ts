@@ -1,22 +1,23 @@
 const RESET_COLOR = `\x1b[0m`
-const CYAN = '\x1b[36m'
-const MAGENTA = '\x1b[35m'
 const GREEN = '\x1b[32m'
-const BLUE = '\x1b[96m'
+import { spinner, log } from '@clack/prompts'
+
+const loading = spinner();
 
 export const logLoading = () => {
-  console.log(`${CYAN}====================================`);
-  console.log(`LOADING...`);
-  console.log('====================================', RESET_COLOR);
+  loading.start(`Loading`)
 }
 
 export const logScrappedItem = (item: string) => {
-  console.log(`${MAGENTA}Scrapped the price of${RESET_COLOR}`, item)
+  loading.stop(`${GREEN}✓${RESET_COLOR} Scrapped the price of ${item}`)
 }
 
 export const logUpdatedSheet = () => {
-  console.log(`${CYAN}====================================`, RESET_COLOR);
-  console.log(`${GREEN}SHEET UPDATED!`, RESET_COLOR)
+  log.success('SHEET UPDATED!')
   const link = 'https://docs.google.com/spreadsheets/d/1Ih4EbfV6VjW3J3ltQYdFDnE7ZyxW9K5anVIyjTqRdK4/edit#gid=0'
-  console.log('Link:', `${BLUE}${link}`, RESET_COLOR)
+  log.info(`Link: ${link}`)
+}
+
+export const logTotalPrice = (totalPrice: number) => {
+  log.info(`Total price: ${totalPrice}`)
 }

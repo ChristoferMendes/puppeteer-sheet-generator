@@ -1,4 +1,4 @@
-import { logUpdatedSheet } from '../../logger';
+import { logTotalPrice, logUpdatedSheet } from '../../logger';
 import { initializeGoogleAPI } from './initializeGoogleAPI';
 import { config } from 'dotenv'
 import { getTotalPrices } from '../getTotalPrice';
@@ -40,6 +40,6 @@ export const uploadToGoogleSheet = async (fileData: (string | number)[][]) => {
   
 
   logUpdatedSheet()
-  console.log('TOTAL:', totalPrice)
+  logTotalPrice(totalPrice)
   process.exit()
 }
