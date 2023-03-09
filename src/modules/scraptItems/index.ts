@@ -15,7 +15,6 @@ export const scrapItems = async (name: string) => {
 
   const shoppingXPath = '/html/body/div[7]/div/div[4]/div/div[1]/div/div[1]/div/div[2]/a'
   
-
   await Promise.all([
     page.goto(link),
     page.waitForXPath(shoppingXPath),

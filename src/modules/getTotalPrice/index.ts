@@ -1,10 +1,10 @@
 import { pipe } from "../../utils/pipe";
-import { getAveragePrices } from "./getAveragePrice";
+import { getMinPrice } from "./getMinPrice";
 import { getPricesByProductName } from "./getPricesByProductName";
 import { sumAllPrices } from "./sumAllPrices";
 
-export const getTotalPrices = (data: (string | number )[][]) => {
-  const totalPrices = pipe(getPricesByProductName, getAveragePrices, sumAllPrices)(data)
+export const getTotalPrice = (data: (string | number)[][]) => {
+  const totalPrices = pipe(getPricesByProductName, getMinPrice, sumAllPrices)(data)
 
   return totalPrices;
 }

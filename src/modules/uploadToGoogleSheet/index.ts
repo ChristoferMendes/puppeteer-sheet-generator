@@ -1,7 +1,7 @@
 import { logTotalPrice, logUpdatedSheet } from '../../logger';
 import { initializeGoogleAPI } from './initializeGoogleAPI';
 import { config } from 'dotenv'
-import { getTotalPrices } from '../getTotalPrice';
+import { getTotalPrice } from '../getTotalPrice';
 config()
 
 export const uploadToGoogleSheet = async (fileData: (string | number)[][]) => {
@@ -25,9 +25,10 @@ export const uploadToGoogleSheet = async (fileData: (string | number)[][]) => {
     },
   })
 
-  const totalPrice = getTotalPrices(fileData)
+  const totalPrice = getTotalPrice(fileData)
   const totalRow = [['TOTAL PRICE', totalPrice]]
-  const lastRow = `A${fileData.length + 1}:B${fileData.length + 1}`
+  const incrementLastCell = fileData.length + 1;
+  const lastRow = `A${incrementLastCell}:B${incrementLastCell}`
 
   await googleSheets.spreadsheets.values.update({
     spreadsheetId,
