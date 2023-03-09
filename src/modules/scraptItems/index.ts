@@ -1,5 +1,5 @@
 import puppeteer, { ElementHandle } from "puppeteer";
-import { logLoading } from "../../logger";
+import { logLoading } from "../../loggers";
 import { getPrices } from "../getPrices";
 import { getStoreLinkXPaths } from "../getStoreLinkXPaths";
 import { ItemsType } from "./types";

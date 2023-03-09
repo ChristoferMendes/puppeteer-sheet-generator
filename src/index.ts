@@ -1,4 +1,4 @@
-import { logScrappedItem } from "./logger"
+import { logIntro, logScrappedItem } from "./loggers"
 import { removeAditionalInfo } from "./modules/removeAditionalInfo"
 import { scrapItems } from "./modules/scraptItems"
 import { ItemsType } from "./modules/scraptItems/types"
@@ -6,10 +6,9 @@ import { sortCompareFunction } from "./modules/sortCompareFunction"
 import { uploadToGoogleSheet } from "./modules/uploadToGoogleSheet"
 import { pcItems } from "./store/pcItems"
 
-
-
 export const bootstrap = async () => {
   const itemsInTheSheet: ItemsType[] = []
+  logIntro()
 
   for (const pcItem of pcItems) {
     const itemStrict  = `"` + pcItem + `"`
