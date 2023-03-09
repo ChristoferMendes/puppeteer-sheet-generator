@@ -1,10 +1,10 @@
-import { ProductAverage } from "./getAveragePrice"
+import { ProductMinPrice } from "./getMinPrice"
 
-export const sumAllPrices = (averagePrices: ProductAverage) => {
-  const prices = Object.entries(averagePrices).reduce((acc, [, { averagePrice }]) => {
+export const sumAllPrices = (minPrices: ProductMinPrice) => {
+  const prices = Object.entries(minPrices).reduce((acc, [, { minPrice }]) => {
     
 
-    return acc + averagePrice
+    return acc + minPrice
   }, 0)
 
 
