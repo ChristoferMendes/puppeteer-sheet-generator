@@ -6,7 +6,8 @@ import { ItemsType } from "./types";
 
 export const scrapItems = async (name: string) => {
 
-  const browser = await puppeteer.launch()
+  const verifyHeadless = process.env.HEADLESS === 'true'
+  const browser = await puppeteer.launch({ headless: verifyHeadless })
   const page = await browser.newPage()
 
   const link = `https://www.google.com/search?q=${name.replace(/\s/g, '+')}`
