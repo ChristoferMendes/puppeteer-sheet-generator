@@ -1,10 +1,13 @@
 import { google } from "googleapis";
-
-const { auth: { GoogleAuth }} = google;
+import path from 'path'
+const { auth: { GoogleAuth } } = google;
 
 export const initializeGoogleAPI = async () => {
+  const __dirname = path.resolve();
+  const file = __dirname + '/src/auth/credentials.json'
+
   const auth = new GoogleAuth({
-    keyFile: '/home/dev/workspace/projects/puppeteer-sheet-generator/src/auth/credentials.json',
+    keyFile: file,
     scopes: ['https://www.googleapis.com/auth/spreadsheets']
   })
 
